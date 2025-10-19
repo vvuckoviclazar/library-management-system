@@ -5,8 +5,13 @@ import { IoBookSharp } from "react-icons/io5";
 import { FaPeopleGroup } from "react-icons/fa6";
 import Btn from "./btn.tsx";
 import Card from "./card.tsx";
+import Li from "./Li.tsx";
+import { useState } from "react";
 
 function App() {
+  const [isBooks, setIsBooks] = useState(false);
+  const [isMembers, setIsMembers] = useState(false);
+
   return (
     <>
       <section className="side-bar">
@@ -17,26 +22,63 @@ function App() {
           LMS
         </h1>
         <div className="links-div">
-          <Btn className="link-btn">
-            <MdDashboard size={22} />
-            DASHBOARD
+          <Btn
+            className="link-btn"
+            onClick={() => {
+              setIsBooks(false);
+              setIsMembers(false);
+            }}
+          >
+            <MdDashboard size={22} /> DASHBOARD
           </Btn>
-          <Btn className="link-btn">
-            <IoBookSharp size={22} />
-            BOOKS
+          <Btn
+            className="link-btn"
+            onClick={() => {
+              setIsBooks(true);
+              setIsMembers(false);
+            }}
+          >
+            <IoBookSharp size={22} /> BOOKS
           </Btn>
-          <Btn className="link-btn">
-            <FaPeopleGroup size={22} />
-            MEMBERS
+          <Btn
+            className="link-btn"
+            onClick={() => {
+              setIsMembers(true);
+              setIsBooks(false);
+            }}
+          >
+            <FaPeopleGroup size={22} /> MEMBERS
           </Btn>
         </div>
       </section>
-      <section className="dashboard">
-        <h1 className="dashboard-h1">Dashboard</h1>
-        <div className="options-div">
-          <Card option="BOOKS" />
-        </div>
-      </section>
+      {!isBooks && !isMembers ? (
+        <section className="dashboard">
+          <h1 className="dashboard-h1">Dashboard</h1>
+          <div className="options-div">
+            <Card
+              option="BOOKS"
+              icon={<IoBookSharp size={35} />}
+              onClick={() => {
+                setIsBooks(true);
+                setIsMembers(false);
+              }}
+            />
+            <Card
+              option="MEMBERS"
+              icon={<FaPeopleGroup size={35} />}
+              onClick={() => {
+                setIsBooks(false);
+                setIsMembers(true);
+              }}
+            />
+          </div>
+        </section>
+      ) : (
+        <ul>
+          {isBooks && <Li name="Books" />}
+          {isMembers && <Li name="Members" />}
+        </ul>
+      )}
     </>
   );
 }
