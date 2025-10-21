@@ -3,6 +3,7 @@ import React from "react";
 type BtnProps = {
   children?: React.ReactNode;
   className?: string;
+
   onClick?: () => void;
 };
 
