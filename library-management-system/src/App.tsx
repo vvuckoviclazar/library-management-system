@@ -5,49 +5,18 @@ import { IoBookSharp } from "react-icons/io5";
 import { FaPeopleGroup } from "react-icons/fa6";
 import Btn from "./btn.tsx";
 import Card from "./card.tsx";
-import Li from "./Li.tsx";
-import { useState, useEffect } from "react";
+import BooksLi from "./bookLi.tsx";
+import { useState } from "react";
+import booksData from "./booksData";
+import MembersLi from "./membersLi.tsx";
+import membersData from "./membersData.tsx";
 
 type View = "dashboard" | "books" | "members";
 
-type Book = {
-  id: string;
-  title: string;
-  author: string;
-  status: string;
-};
-
 function App() {
   const [view, setView] = useState<View>("dashboard");
-  const [books, setBooks] = useState<Book[]>([]);
-
-  useEffect(() => {
-    async function fetchBooks() {
-      try {
-        const res = await fetch(
-          "https://firestore.googleapis.com/v1/projects/library-management-syste-6f973/databases/(default)/documents/books"
-        );
-
-        const data = await res.json();
-
-        const booksData: Book[] = (data.documents ?? []).map((doc: any) => {
-          const id = (doc.name as string)?.split("/").pop() ?? "";
-          const f = doc.fields ?? {};
-          return {
-            id,
-            title: f.title?.stringValue ?? "",
-            author: f.author?.stringValue ?? "",
-            status: f.status?.stringValue ?? "",
-          };
-        });
-
-        setBooks(booksData);
-      } catch (err) {
-        console.error("Error fetching books:", err);
-      }
-    }
-    fetchBooks();
-  }, []);
+  const [books, setBooks] = useState<Book[]>(booksData);
+  const [members, setMembers] = useState<Member[]>(membersData);
 
   return (
     <>
@@ -96,7 +65,7 @@ function App() {
         <ul>
           {view === "books" &&
             books.map((book) => (
-              <Li
+              <BooksLi
                 key={book.id}
                 id={book.id}
                 title={book.title}
@@ -105,7 +74,17 @@ function App() {
               />
             ))}
 
-          {view === "members" && <Li title="Members" />}
+          {view === "members" &&
+            members.map((member) => (
+              <MembersLi
+                key={member.id}
+                id={member.id}
+                name={member.name}
+                phone={member.phone}
+                email={member.email}
+                fine={member.fine}
+              />
+            ))}
         </ul>
       )}
     </>
@@ -113,5 +92,3 @@ function App() {
 }
 
 export default App;
-
-// react router, set up poslednje verzije

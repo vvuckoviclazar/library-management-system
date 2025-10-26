@@ -2,15 +2,15 @@ import Btn from "./btn.tsx";
 import { MdDelete } from "react-icons/md";
 import { MdModeEditOutline } from "react-icons/md";
 
-type LiProps = {
-  id?: string;
-  title?: string;
-  author?: string;
-  status?: string;
+type BooksLiProps = {
+  id: string;
+  title: string;
+  author: string;
+  status: string;
 };
-function Li({ id, title, author, status }: LiProps) {
+function BooksLi({ id, title, author, status }: BooksLiProps) {
   return (
-    <li>
+    <li className="books-li">
       <p className="books-p">{id}</p> <p className="books-p">{title}</p>{" "}
       <p className="books-p">{author}</p> <p className="books-p">{status}</p>{" "}
       <div className="li-btn-div">
@@ -25,4 +25,4 @@ function Li({ id, title, author, status }: LiProps) {
   );
 }
 
-export default Li;
+export default BooksLi;
