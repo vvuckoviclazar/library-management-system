@@ -149,7 +149,7 @@ body {
 ul {
   list-style-type: none;
   padding-left: 0rem;
-  border: 1rem solid gainsboro;
+
   padding-left: 30rem;
   padding-right: 30rem;
 }
@@ -158,9 +158,10 @@ ul {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   width: 100%;
-  border-bottom: 1rem solid gainsboro;
+
   border-left: 1rem solid gainsboro;
   border-right: 1rem solid gainsboro;
+  border-top: 1rem solid gainsboro;
   padding-left: 15rem;
   padding-right: 0rem;
   padding-top: 25rem;
@@ -170,13 +171,18 @@ ul {
 
 .books-li:last-child {
   border-radius: 0rem 0rem 7rem 7rem;
+  border-bottom: 1rem solid gainsboro;
+}
+
+.books-li:first-child {
+  border-radius: 0rem;
 }
 
 .members-li {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   width: 100%;
-  border-bottom: 1rem solid gainsboro;
+  border-top: 1rem solid gainsboro;
   border-left: 1rem solid gainsboro;
   border-right: 1rem solid gainsboro;
   padding-left: 15rem;
@@ -188,6 +194,11 @@ ul {
 
 .members-li:last-child {
   border-radius: 0rem 0rem 7rem 7rem;
+  border-bottom: 1rem solid gainsboro;
+}
+
+.members-li:first-child {
+  border-radius: 0rem;
 }
 
 .books-p,
@@ -203,6 +214,7 @@ ul {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  transition: transform;
 }
 
 .edit-books-btn,
@@ -211,4 +223,94 @@ ul {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  transition: transform;
+}
+
+.delete-books-btn:hover,
+.delete-members-btn:hover,
+.edit-books-btn:hover,
+.edit-members-btn:hover {
+  transform: scale(1.2);
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rem;
+  padding-top: 20rem;
+  padding-left: 32rem;
+  gap: 20rem;
+}
+
+.page-h1 {
+  font-size: 35rem;
+  font-weight: 400;
+}
+
+.add-new-btn {
+  color: white;
+  border: none;
+  background-color: green;
+  font-size: 16rem;
+  font-weight: bold;
+  padding: 12rem;
+  border-radius: 5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.362), 0 1px 2px rgba(0, 0, 0, 0.233);
+  transition: background 0.3s;
+}
+
+.add-new-btn:hover {
+  background-color: rgb(0, 96, 0);
+  cursor: pointer;
+}
+
+.books-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding-left: 30rem;
+}
+
+.books-page-p,
+.members-page-p {
+  font-size: 20rem;
+  font-weight: 550;
+  text-align: left;
+}
+
+.books-page-li {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  width: 100%;
+  border-left: 1rem solid gainsboro;
+  border-right: 1rem solid gainsboro;
+  border-top: 1rem solid gainsboro;
+  padding-left: 15rem;
+  padding-right: 0rem;
+  padding-top: 18rem;
+  padding-bottom: 18rem;
+  gap: 70rem;
+  border-radius: 7rem 7rem 0rem 0rem;
+  background-color: rgb(219, 219, 219);
+}
+
+.members-page-li {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 0.9fr 1.1fr 1.1fr;
+  width: 100%;
+  border-left: 1rem solid gainsboro;
+  border-right: 1rem solid gainsboro;
+  border-top: 1rem solid gainsboro;
+  padding-left: 15rem;
+  padding-right: 0rem;
+  padding-top: 18rem;
+  padding-bottom: 18rem;
+  gap: 70rem;
+  border-radius: 7rem 7rem 0rem 0rem;
+  background-color: rgb(219, 219, 219);
 }

@@ -1,33 +1,20 @@
 import { GoArrowRight } from "react-icons/go";
 import type { ReactNode } from "react";
 import Btn from "./btn.tsx";
+import { Link } from "react-router-dom";
 
 type CardProps = {
   option: string;
   btnOption: string;
-  variation: string;
+  variation: "purple" | "orange";
   lenght: number;
-  onClick: () => void;
   icon: ReactNode;
+  to: string;
 };
 
-function Card({
-  option,
-  onClick,
-  icon,
-  btnOption,
-  variation,
-  lenght,
-}: CardProps) {
+function Card({ option, icon, btnOption, variation, lenght, to }: CardProps) {
   const baseClass = "card-span";
-  let modifierClass = "";
-
-  if (variation === "purple") {
-    modifierClass = "purple";
-  } else if (variation === "orange") {
-    modifierClass = "orange";
-  }
-
+  const modifierClass = variation === "purple" ? "purple" : "orange";
   const finalClass = `${baseClass} ${modifierClass}`;
 
   return (
@@ -39,9 +26,12 @@ function Card({
           <p className="card-number">{lenght}</p>
         </div>
       </div>
-      <Btn className="card-btn" onClick={onClick}>
-        See all {btnOption} <GoArrowRight size={30} />
-      </Btn>
+
+      <Link to={to}>
+        <Btn className="card-btn">
+          See all {btnOption} <GoArrowRight size={30} />
+        </Btn>
+      </Link>
     </div>
   );
 }

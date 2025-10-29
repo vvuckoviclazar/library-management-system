@@ -3,7 +3,7 @@ import { MdDelete } from "react-icons/md";
 import { MdModeEditOutline } from "react-icons/md";
 
 type MembersLiProps = {
-  id: string;
+  id: number;
   name: string;
   phone: number;
   email: string;

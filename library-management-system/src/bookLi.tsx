@@ -3,7 +3,7 @@ import { MdDelete } from "react-icons/md";
 import { MdModeEditOutline } from "react-icons/md";
 
 type BooksLiProps = {
-  id: string;
+  id: number;
   title: string;
   author: string;
   status: string;
